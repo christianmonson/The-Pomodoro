@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="POTimerViewController">
             <connections>
+                <outlet property="timerButton" destination="Vaw-Sc-bJk" id="LWl-lI-bOC"/>
+                <outlet property="timerLabel" destination="fPe-Pd-Upu" id="ktu-18-92F"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +16,67 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vaw-Sc-bJk">
+                    <rect key="frame" x="279" y="369" width="46" height="30"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="timerButtonPressed:" destination="-1" eventType="touchUpInside" id="TF3-jI-txC"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPe-Pd-Upu">
+                    <rect key="frame" x="279" y="205" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="m7H-yK-AtY">
+                            <variation key="heightClass=regular-widthClass=compact" constant="120"/>
+                        </constraint>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="m7H-yK-AtY"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="m7H-yK-AtY"/>
+                        </mask>
+                    </variation>
+                </label>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="fPe-Pd-Upu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="206" id="AVH-K3-P2Y">
+                    <variation key="heightClass=regular-widthClass=compact" constant="156"/>
+                </constraint>
+                <constraint firstItem="fPe-Pd-Upu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dg9-UO-FVV">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstItem="fPe-Pd-Upu" firstAttribute="centerX" secondItem="Vaw-Sc-bJk" secondAttribute="centerX" id="l7X-41-MTH"/>
+                <constraint firstItem="Vaw-Sc-bJk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="368" id="pp0-UT-SGR">
+                    <variation key="heightClass=regular-widthClass=compact" constant="284"/>
+                </constraint>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="AVH-K3-P2Y"/>
+                    <exclude reference="dg9-UO-FVV"/>
+                    <exclude reference="l7X-41-MTH"/>
+                    <exclude reference="pp0-UT-SGR"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="constraints">
+                    <include reference="AVH-K3-P2Y"/>
+                    <include reference="dg9-UO-FVV"/>
+                    <include reference="l7X-41-MTH"/>
+                    <include reference="pp0-UT-SGR"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>
