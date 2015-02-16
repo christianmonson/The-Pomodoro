@@ -7,6 +7,7 @@
 //
 
 #import "POTimerViewController.h"
+#import "POTimer.h"
 
 @interface POTimerViewController ()
 
@@ -14,6 +15,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *timerButton;
 
 @end
+
+static NSString * const secondTickNotification = @"secondTick";
+static NSString * const currentRoundNotification = @"currentRound";
+static NSString * const roundCompleteNotification = @"roundComplete";
 
 @implementation POTimerViewController
 
@@ -25,6 +30,20 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)updateLabel {
+    self.timerLabel.text = [NSString stringWithFormat:@"%ld:%02ld", (long)[POTimer sharedInstance].minutes, (long)[POTimer sharedInstance].seconds];
+}
+
+- (void)registerForNotifications {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateLabel) name:secondTickNotification object:nil];
+}
+
+- (POTimerViewController *) init {
+    self = [super init];
+    [self registerForNotifications];
+    return self;
 }
 
 - (IBAction)timerButtonPressed:(id)sender {
