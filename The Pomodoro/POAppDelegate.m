@@ -23,13 +23,14 @@
     timerViewController.tabBarItem.title = @"Timer";
     timerViewController.tabBarItem.image = [UIImage imageNamed:@"timer-50"];
     
-    
     PORoundsViewController *roundsViewController = [[PORoundsViewController alloc]init];
     roundsViewController.tabBarItem.title = @"Rounds";
     roundsViewController.tabBarItem.image = [UIImage imageNamed:@"list-50"];
     
+    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:roundsViewController];
+    
     UITabBarController *tabBarController = [[UITabBarController alloc]init];
-    NSArray *viewControllerArray = @[roundsViewController, timerViewController];
+    NSArray *viewControllerArray = @[navigationController, timerViewController];
     tabBarController.viewControllers = viewControllerArray;
     self.window.rootViewController = tabBarController;
     return YES;
