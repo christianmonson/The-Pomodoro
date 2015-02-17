@@ -19,6 +19,8 @@
 static NSString * const secondTickNotification = @"secondTick";
 static NSString * const currentRoundNotification = @"currentRound";
 static NSString * const roundCompleteNotification = @"roundComplete";
+static NSString * const relaxColorNotification = @"relax";
+static NSString * const workColorNotification = @"work";
 
 @implementation PORoundsViewController
 
@@ -33,6 +35,7 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     self.tableView.delegate = self;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.tableView];
+    self.tableView.rowHeight = 57;
 }
 
 - (void)roundSelected:(NSInteger)round {
@@ -83,7 +86,7 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.font = [UIFont fontWithName:@"Courier" size:28.4];
     
-    if (indexPath.row %2) {
+    if (indexPath.row % 2) {
         cell.textLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
         cell.imageView.image = [UIImage imageNamed:@"Joystick"];
     }
@@ -105,6 +108,12 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     self.currentRound = indexPath.row;
     [self roundSelected:self.currentRound];
     [[POTimer sharedInstance] cancelTimer];
+    
+    if (indexPath.row % 2) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:relaxColorNotification object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:workColorNotification object:nil];
+    }
 }
 
 /*

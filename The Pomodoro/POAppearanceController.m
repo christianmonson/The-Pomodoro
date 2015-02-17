@@ -7,6 +7,7 @@
 //
 
 #import "POAppearanceController.h"
+#import "POTimerViewController.h"
 
 @implementation POAppearanceController
 
@@ -16,8 +17,10 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Courier" size:30], NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
     
-    [[UITabBar appearance] setBarTintColor:[UIColor redColor]];
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor redColor]];
+    
+    [[UIButton appearanceWhenContainedIn:[POTimerViewController class], nil] setTintColor:[UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0]];
 }
 
 @end

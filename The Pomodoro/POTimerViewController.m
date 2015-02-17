@@ -19,6 +19,8 @@
 static NSString * const secondTickNotification = @"secondTick";
 static NSString * const currentRoundNotification = @"currentRound";
 static NSString * const roundCompleteNotification = @"roundComplete";
+static NSString * const relaxColorNotification = @"relax";
+static NSString * const workColorNotification = @"work";
 
 @implementation POTimerViewController
 
@@ -30,6 +32,10 @@ static NSString * const roundCompleteNotification = @"roundComplete";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)updateLabel {
@@ -46,11 +52,27 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     self.timerButton.enabled = YES;
 }
 
+- (void)relax {
+    self.view.backgroundColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
+    self.timerLabel.textColor = [UIColor whiteColor];
+    self.timerButton.tintColor = [UIColor whiteColor];
+    self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
+}
+
+- (void)work {
+    self.view.backgroundColor = [UIColor redColor];
+    self.timerLabel.textColor = [UIColor whiteColor];
+    self.timerButton.tintColor = [UIColor whiteColor];
+    self.tabBarController.tabBar.tintColor = [UIColor redColor];
+}
+
 #pragma NSNotificationCenter
 
 - (void)registerForNotifications {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateLabel) name:secondTickNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newRound) name:currentRoundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(relax) name:relaxColorNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(work) name:workColorNotification object:nil];
 }
 
 - (void)deRegisterForNotification {
