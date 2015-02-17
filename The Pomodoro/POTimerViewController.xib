@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="POTimerViewController">
             <connections>
+                <outlet property="roundImage" destination="Ac1-8l-87P" id="EJc-sY-sdE"/>
                 <outlet property="timerButton" destination="Vaw-Sc-bJk" id="LWl-lI-bOC"/>
                 <outlet property="timerLabel" destination="fPe-Pd-Upu" id="ktu-18-92F"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -53,14 +54,22 @@
                         <action selector="timerButtonPressed:" destination="-1" eventType="touchUpInside" id="TF3-jI-txC"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ac1-8l-87P">
+                    <rect key="frame" x="180" y="236" width="240" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="dME-ju-5Yi"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Vaw-Sc-bJk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="1kG-HQ-e3z"/>
                 <constraint firstAttribute="bottom" secondItem="Vaw-Sc-bJk" secondAttribute="bottom" constant="164" id="7PO-vc-Weq"/>
+                <constraint firstItem="Ac1-8l-87P" firstAttribute="top" secondItem="fPe-Pd-Upu" secondAttribute="bottom" constant="-6" id="8dJ-im-nhc"/>
                 <constraint firstItem="fPe-Pd-Upu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="206" id="AVH-K3-P2Y">
                     <variation key="heightClass=regular-widthClass=compact" constant="156"/>
                 </constraint>
+                <constraint firstItem="Vaw-Sc-bJk" firstAttribute="top" secondItem="Ac1-8l-87P" secondAttribute="bottom" constant="-12" id="D8x-Cq-Vex"/>
                 <constraint firstItem="fPe-Pd-Upu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="146" id="IT8-Lj-GPC"/>
                 <constraint firstItem="fPe-Pd-Upu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dg9-UO-FVV">
                     <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
@@ -71,6 +80,7 @@
                 </constraint>
                 <constraint firstItem="fPe-Pd-Upu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="sOq-ef-0eD"/>
                 <constraint firstItem="fPe-Pd-Upu" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="srH-Bv-Uly"/>
+                <constraint firstItem="Ac1-8l-87P" firstAttribute="centerX" secondItem="Vaw-Sc-bJk" secondAttribute="centerX" id="tne-MC-fgd"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
