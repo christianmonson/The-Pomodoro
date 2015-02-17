@@ -56,7 +56,6 @@ static NSString * const roundCompleteNotification = @"roundComplete";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.currentRound = indexPath.row;
     [self roundSelected:self.currentRound];
 }
@@ -65,8 +64,7 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(roundComplete) name:roundCompleteNotification object:nil];
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if(self)
     {
@@ -75,11 +73,11 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     return self;
 }
 
--(void)deRegisterForNotification {
+- (void)deRegisterForNotification {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
--(void)dealloc {
+- (void)dealloc {
     [self deRegisterForNotification];
 }
 

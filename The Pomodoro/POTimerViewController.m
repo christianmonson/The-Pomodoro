@@ -41,16 +41,15 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newRound) name:currentRoundNotification object:nil];
 }
 
--(void)deRegisterForNotification {
+- (void)deRegisterForNotification {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
--(void)dealloc {
+- (void)dealloc {
     [self deRegisterForNotification];
 }
 
--(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self)
     {

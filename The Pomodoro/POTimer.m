@@ -29,26 +29,22 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     return sharedInstance;
 }
 
-//-(void)secondTick {
-//    [self performSelector:@selector(decreaseSecond) withObject:nil afterDelay:1.0];
-//}
-
--(void)startTimer {
+- (void)startTimer {
     self.isOn = YES;
     [self isActive];
 }
 
--(void)cancelTimer {
+- (void)cancelTimer {
     self.isOn = NO;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(decreaseSecond) object:nil];
 }
 
--(void)endTimer {
+- (void)endTimer {
     self.isOn = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:roundCompleteNotification object:nil];
 }
 
--(void)decreaseSecond {
+- (void)decreaseSecond {
 
     if (self.seconds > 0){
         self.seconds --;
