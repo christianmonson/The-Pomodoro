@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 @property (weak, nonatomic) IBOutlet UIButton *timerButton;
 @property (weak, nonatomic) IBOutlet UIImageView *roundImage;
+@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
 
 @end
 
@@ -28,6 +29,10 @@ static NSString * const workColorNotification = @"work";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.pauseButton.hidden = TRUE;
+    self.pauseButton.tintColor = [UIColor whiteColor];
+    self.timerButton.enabled = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,7 +50,15 @@ static NSString * const workColorNotification = @"work";
 
 - (IBAction)timerButtonPressed:(id)sender {
     [[POTimer sharedInstance] startTimer];
-    self.timerButton.enabled = NO;
+//    self.timerButton.enabled = NO;
+    self.timerButton.hidden = TRUE;
+    self.pauseButton.hidden = FALSE;
+}
+
+- (IBAction)pause:(id)sender {
+    [[POTimer sharedInstance] cancelTimer];
+    self.pauseButton.hidden = TRUE;
+    self.timerButton.hidden = FALSE;
 }
 
 - (void)newRound {

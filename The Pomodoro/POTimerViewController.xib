@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="POTimerViewController">
             <connections>
+                <outlet property="pauseButton" destination="JcD-fr-ULf" id="wTx-N5-jMr"/>
                 <outlet property="roundImage" destination="Ac1-8l-87P" id="EJc-sY-sdE"/>
                 <outlet property="timerButton" destination="Vaw-Sc-bJk" id="LWl-lI-bOC"/>
                 <outlet property="timerLabel" destination="fPe-Pd-Upu" id="ktu-18-92F"/>
@@ -19,15 +20,44 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vaw-Sc-bJk">
+                    <rect key="frame" x="8" y="364" width="584" height="72"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="584" id="beZ-p2-1Un"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="60"/>
+                    <state key="normal" title="Start">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="timerButtonPressed:" destination="-1" eventType="touchUpInside" id="TF3-jI-txC"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ac1-8l-87P">
+                    <rect key="frame" x="180" y="236" width="240" height="140"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="dME-ju-5Yi"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JcD-fr-ULf">
+                    <rect key="frame" x="8" y="364" width="584" height="72"/>
+                    <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="60"/>
+                    <state key="normal" title="Pause">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="pause:" destination="-1" eventType="touchUpInside" id="7Kg-WP-zfG"/>
+                    </connections>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPe-Pd-Upu">
-                    <rect key="frame" x="8" y="146" width="584" height="96"/>
+                    <rect key="frame" x="8" y="144" width="584" height="96"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="96" id="862-4t-H0e"/>
                         <constraint firstAttribute="height" constant="21" id="m7H-yK-AtY">
                             <variation key="heightClass=regular-widthClass=compact" constant="120"/>
                         </constraint>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                    <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="80"/>
                     <color key="textColor" red="1" green="0.074020686490546828" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
@@ -41,36 +71,19 @@
                         </mask>
                     </variation>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vaw-Sc-bJk">
-                    <rect key="frame" x="8" y="352" width="584" height="84"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="584" id="beZ-p2-1Un"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                    <state key="normal" title="Start">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="timerButtonPressed:" destination="-1" eventType="touchUpInside" id="TF3-jI-txC"/>
-                    </connections>
-                </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ac1-8l-87P">
-                    <rect key="frame" x="180" y="236" width="240" height="128"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="240" id="dME-ju-5Yi"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Vaw-Sc-bJk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="1kG-HQ-e3z"/>
+                <constraint firstItem="JcD-fr-ULf" firstAttribute="baseline" secondItem="Vaw-Sc-bJk" secondAttribute="baseline" id="6aD-5E-tnY"/>
                 <constraint firstAttribute="bottom" secondItem="Vaw-Sc-bJk" secondAttribute="bottom" constant="164" id="7PO-vc-Weq"/>
-                <constraint firstItem="Ac1-8l-87P" firstAttribute="top" secondItem="fPe-Pd-Upu" secondAttribute="bottom" constant="-6" id="8dJ-im-nhc"/>
+                <constraint firstItem="JcD-fr-ULf" firstAttribute="leading" secondItem="Vaw-Sc-bJk" secondAttribute="leading" id="8Q6-Mc-rFk"/>
+                <constraint firstItem="Ac1-8l-87P" firstAttribute="top" secondItem="fPe-Pd-Upu" secondAttribute="bottom" constant="-4" id="8dJ-im-nhc"/>
                 <constraint firstItem="fPe-Pd-Upu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="206" id="AVH-K3-P2Y">
                     <variation key="heightClass=regular-widthClass=compact" constant="156"/>
                 </constraint>
                 <constraint firstItem="Vaw-Sc-bJk" firstAttribute="top" secondItem="Ac1-8l-87P" secondAttribute="bottom" constant="-12" id="D8x-Cq-Vex"/>
-                <constraint firstItem="fPe-Pd-Upu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="146" id="IT8-Lj-GPC"/>
+                <constraint firstItem="fPe-Pd-Upu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="144" id="IT8-Lj-GPC"/>
                 <constraint firstItem="fPe-Pd-Upu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dg9-UO-FVV">
                     <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                 </constraint>
@@ -81,6 +94,7 @@
                 <constraint firstItem="fPe-Pd-Upu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="sOq-ef-0eD"/>
                 <constraint firstItem="fPe-Pd-Upu" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="srH-Bv-Uly"/>
                 <constraint firstItem="Ac1-8l-87P" firstAttribute="centerX" secondItem="Vaw-Sc-bJk" secondAttribute="centerX" id="tne-MC-fgd"/>
+                <constraint firstItem="JcD-fr-ULf" firstAttribute="trailing" secondItem="Vaw-Sc-bJk" secondAttribute="trailing" id="uWV-0z-1U0"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
@@ -98,6 +112,7 @@
                     <include reference="pp0-UT-SGR"/>
                 </mask>
             </variation>
+            <point key="canvasLocation" x="140" y="155"/>
         </view>
     </objects>
 </document>
