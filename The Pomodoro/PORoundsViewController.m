@@ -26,10 +26,12 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.title = @"Rounds";
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.tableView registerClass:[UITableView class] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.tableView];
 }
 
@@ -48,20 +50,44 @@ static NSString * const roundCompleteNotification = @"roundComplete";
 }
 
 - (void)roundSelected:(NSInteger)round {
-    [POTimer sharedInstance].minutes = [self rounds][round];
+    [POTimer sharedInstance].minutes = [[self rounds][round] integerValue];
     [POTimer sharedInstance].seconds = 0;
     [[NSNotificationCenter defaultCenter] postNotificationName:currentRoundNotification object:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.currentRound = indexPath.row;
     [self roundSelected:self.currentRound];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)registerForNotification {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(roundComplete) name:roundCompleteNotification object:nil];
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if(self)
+    {
+        [self registerForNotification];
+    }
+    return self;
+}
+
+-(void)deRegisterForNotification {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+-(void)dealloc {
+    [self deRegisterForNotification];
+}
+
+- (void)roundComplete {
+    if (self.currentRound != [[self rounds] indexOfObject:[[self rounds] lastObject]]){
+        self.currentRound++;
+        [self roundSelected:self.currentRound];
+    }
 }
 
 /*

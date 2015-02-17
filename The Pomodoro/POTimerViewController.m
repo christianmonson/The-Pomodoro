@@ -33,20 +33,38 @@ static NSString * const roundCompleteNotification = @"roundComplete";
 }
 
 - (void)updateLabel {
-    self.timerLabel.text = [NSString stringWithFormat:@"%ld:%02ld", (long)[POTimer sharedInstance].minutes, (long)[POTimer sharedInstance].seconds];
+    self.timerLabel.text = [NSString stringWithFormat:@"%li:%02li", (long)[POTimer sharedInstance].minutes, (long)[POTimer sharedInstance].seconds];
 }
 
 - (void)registerForNotifications {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateLabel) name:secondTickNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newRound) name:currentRoundNotification object:nil];
 }
 
-- (POTimerViewController *) init {
-    self = [super init];
-    [self registerForNotifications];
+-(void)deRegisterForNotification {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+-(void)dealloc {
+    [self deRegisterForNotification];
+}
+
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if(self)
+    {
+        [self registerForNotifications];
+    }
     return self;
 }
 
 - (IBAction)timerButtonPressed:(id)sender {
+}
+
+- (void)newRound {
+    [self updateLabel];
+    self.timerButton.enabled = YES;
 }
 
 /*

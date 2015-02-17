@@ -28,19 +28,19 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     });
     return sharedInstance;
 }
--(void)registerForNotification{
-    
-}
--(void)secondTick {
-    [self performSelector:@selector(decreaseSecond) withObject:nil afterDelay:1.0];
-}
+
+//-(void)secondTick {
+//    [self performSelector:@selector(decreaseSecond) withObject:nil afterDelay:1.0];
+//}
 
 -(void)startTimer {
     self.isOn = YES;
+    [self isActive];
 }
 
 -(void)cancelTimer {
     self.isOn = NO;
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(decreaseSecond) object:nil];
 }
 
 -(void)endTimer {

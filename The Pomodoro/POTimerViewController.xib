@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="POTimerViewController">
@@ -17,23 +18,15 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vaw-Sc-bJk">
-                    <rect key="frame" x="279" y="369" width="46" height="30"/>
-                    <state key="normal" title="Button">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="timerButtonPressed:" destination="-1" eventType="touchUpInside" id="TF3-jI-txC"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPe-Pd-Upu">
-                    <rect key="frame" x="279" y="205" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPe-Pd-Upu">
+                    <rect key="frame" x="8" y="146" width="584" height="96"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="96" id="862-4t-H0e"/>
                         <constraint firstAttribute="height" constant="21" id="m7H-yK-AtY">
                             <variation key="heightClass=regular-widthClass=compact" constant="120"/>
                         </constraint>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
@@ -47,12 +40,28 @@
                         </mask>
                     </variation>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vaw-Sc-bJk">
+                    <rect key="frame" x="8" y="388" width="584" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="584" id="beZ-p2-1Un"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <state key="normal" title="Start">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="timerButtonPressed:" destination="-1" eventType="touchUpInside" id="TF3-jI-txC"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Vaw-Sc-bJk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="1kG-HQ-e3z"/>
+                <constraint firstAttribute="bottom" secondItem="Vaw-Sc-bJk" secondAttribute="bottom" constant="164" id="7PO-vc-Weq"/>
                 <constraint firstItem="fPe-Pd-Upu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="206" id="AVH-K3-P2Y">
                     <variation key="heightClass=regular-widthClass=compact" constant="156"/>
                 </constraint>
+                <constraint firstItem="fPe-Pd-Upu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="146" id="IT8-Lj-GPC"/>
                 <constraint firstItem="fPe-Pd-Upu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dg9-UO-FVV">
                     <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                 </constraint>
@@ -60,6 +69,8 @@
                 <constraint firstItem="Vaw-Sc-bJk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="368" id="pp0-UT-SGR">
                     <variation key="heightClass=regular-widthClass=compact" constant="284"/>
                 </constraint>
+                <constraint firstItem="fPe-Pd-Upu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="sOq-ef-0eD"/>
+                <constraint firstItem="fPe-Pd-Upu" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="srH-Bv-Uly"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">

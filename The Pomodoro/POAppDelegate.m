@@ -30,7 +30,7 @@
     UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:roundsViewController];
     
     UITabBarController *tabBarController = [[UITabBarController alloc]init];
-    NSArray *viewControllerArray = @[navigationController, timerViewController];
+    NSArray *viewControllerArray = @[timerViewController,navigationController];
     tabBarController.viewControllers = viewControllerArray;
     self.window.rootViewController = tabBarController;
     return YES;
