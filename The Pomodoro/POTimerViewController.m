@@ -36,6 +36,18 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     self.timerLabel.text = [NSString stringWithFormat:@"%li:%02li", (long)[POTimer sharedInstance].minutes, (long)[POTimer sharedInstance].seconds];
 }
 
+- (IBAction)timerButtonPressed:(id)sender {
+    [[POTimer sharedInstance] startTimer];
+    self.timerButton.enabled = NO;
+}
+
+- (void)newRound {
+    [self updateLabel];
+    self.timerButton.enabled = YES;
+}
+
+#pragma NSNotificationCenter
+
 - (void)registerForNotifications {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateLabel) name:secondTickNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newRound) name:currentRoundNotification object:nil];
@@ -56,16 +68,6 @@ static NSString * const roundCompleteNotification = @"roundComplete";
         [self registerForNotifications];
     }
     return self;
-}
-
-- (IBAction)timerButtonPressed:(id)sender {
-    [[POTimer sharedInstance] startTimer];
-    self.timerButton.enabled = NO;
-}
-
-- (void)newRound {
-    [self updateLabel];
-    self.timerButton.enabled = YES;
 }
 
 /*

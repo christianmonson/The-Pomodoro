@@ -35,30 +35,20 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     [self.view addSubview:self.tableView];
 }
 
-- (NSArray *)rounds {
-    return @[@25, @5, @25, @5, @25, @5, @25, @15];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [self rounds][indexPath.row]];
-    return cell;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self rounds].count;
-}
-
 - (void)roundSelected:(NSInteger)round {
     [POTimer sharedInstance].minutes = [[self rounds][round] integerValue];
     [POTimer sharedInstance].seconds = 0;
     [[NSNotificationCenter defaultCenter] postNotificationName:currentRoundNotification object:nil];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.currentRound = indexPath.row;
-    [self roundSelected:self.currentRound];
+- (void)roundComplete {
+    if (self.currentRound != [[self rounds] indexOfObject:[[self rounds] lastObject]]){
+        self.currentRound++;
+        [self roundSelected:self.currentRound];
+    }
 }
+
+#pragma NSNotificationCenter
 
 - (void)registerForNotification {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(roundComplete) name:roundCompleteNotification object:nil];
@@ -81,11 +71,27 @@ static NSString * const roundCompleteNotification = @"roundComplete";
     [self deRegisterForNotification];
 }
 
-- (void)roundComplete {
-    if (self.currentRound != [[self rounds] indexOfObject:[[self rounds] lastObject]]){
-        self.currentRound++;
-        [self roundSelected:self.currentRound];
-    }
+#pragma UITableViewDataSource
+
+- (NSArray *)rounds {
+    return @[@25, @5, @25, @5, @25, @5, @25, @15];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [self rounds][indexPath.row]];
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self rounds].count;
+}
+
+#pragma UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.currentRound = indexPath.row;
+    [self roundSelected:self.currentRound];
 }
 
 /*
