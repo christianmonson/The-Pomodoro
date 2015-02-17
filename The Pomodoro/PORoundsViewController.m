@@ -80,6 +80,18 @@ static NSString * const roundCompleteNotification = @"roundComplete";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [self rounds][indexPath.row]];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.font = [UIFont fontWithName:@"Courier" size:28.4];
+    
+    if (indexPath.row %2) {
+        cell.textLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
+        cell.imageView.image = [UIImage imageNamed:@"Joystick"];
+    }
+    else {
+        cell.textLabel.textColor = [UIColor redColor];
+        cell.imageView.image = [UIImage imageNamed:@"Worker"];
+    }
+    
     return cell;
 }
 
