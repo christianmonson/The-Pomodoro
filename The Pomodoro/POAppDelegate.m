@@ -9,6 +9,7 @@
 #import "POAppDelegate.h"
 #import "PORoundsViewController.h"
 #import "POTimerViewController.h"
+#import "POAppearanceController.h"
 
 @implementation POAppDelegate
 
@@ -18,6 +19,8 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [POAppearanceController initilizeAppearanceDefaults];
     
     POTimerViewController *timerViewController = [[POTimerViewController alloc]init];
     timerViewController.tabBarItem.title = @"Timer";

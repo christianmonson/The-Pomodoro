@@ -92,6 +92,7 @@ static NSString * const roundCompleteNotification = @"roundComplete";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.currentRound = indexPath.row;
     [self roundSelected:self.currentRound];
+    [[POTimer sharedInstance] cancelTimer];
 }
 
 /*
