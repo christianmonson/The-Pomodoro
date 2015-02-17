@@ -60,6 +60,7 @@ static NSString * const roundCompleteNotification = @"roundComplete";
 }
 
 - (IBAction)timerButtonPressed:(id)sender {
+    [[POTimer sharedInstance] startTimer];
 }
 
 - (void)newRound {

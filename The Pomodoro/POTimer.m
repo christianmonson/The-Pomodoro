@@ -49,18 +49,24 @@ static NSString * const roundCompleteNotification = @"roundComplete";
 }
 
 -(void)decreaseSecond {
-    while (self.seconds > 0 || self.minutes > 0) {
-        if (self.seconds > 0) {
-            self.seconds--;
-            [[NSNotificationCenter defaultCenter] postNotificationName:secondTickNotification object:nil];
-        } else if (self.seconds == 0 && self.minutes > 0) {
+
+    if (self.seconds > 0){
+        self.seconds --;
+    }
+    
+    if (self.minutes > 0) {
+        if(self.seconds == 0) {
             self.seconds = 59;
             self.minutes--;
-            [[NSNotificationCenter defaultCenter] postNotificationName:secondTickNotification object:nil];
-        } else {
+        }
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:secondTickNotification object:nil];
+    } else {
+        if(self.seconds == 0){
             [self endTimer];
         }
     }
+    
 }
 
 - (void)isActive {
