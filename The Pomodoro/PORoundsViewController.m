@@ -17,6 +17,7 @@
 
 @end
 
+static NSString * const cellIdentifier = @"cell";
 static NSString * const secondTickNotification = @"secondTick";
 static NSString * const currentRoundNotification = @"currentRound";
 static NSString * const roundCompleteNotification = @"roundComplete";
@@ -34,7 +35,7 @@ static NSString * const workColorNotification = @"work";
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     [self.view addSubview:self.tableView];
     self.tableView.rowHeight = 57;
 }
@@ -93,7 +94,7 @@ static NSString * const workColorNotification = @"work";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [self rounds][indexPath.row]];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.font = [UIFont fontWithName:@"Courier" size:28.4];

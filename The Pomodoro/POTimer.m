@@ -42,6 +42,12 @@ static NSString * const roundCompleteNotification = @"roundComplete";
 - (void)endTimer {
     self.isOn = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:roundCompleteNotification object:nil];
+    
+    UILocalNotification *localNotification = [UILocalNotification new];
+    localNotification.alertBody = @"Time's Up";
+    localNotification.soundName = @"bell_three.mp3";
+    localNotification.applicationIconBadgeNumber = 1;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
 - (void)decreaseSecond {
