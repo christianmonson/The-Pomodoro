@@ -49,6 +49,12 @@ static NSString * const workColorNotification = @"work";
         self.currentRound++;
         [self roundSelected:self.currentRound];
     }
+    
+    if (self.currentRound % 2) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:relaxColorNotification object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:workColorNotification object:nil];
+    }
 }
 
 #pragma NSNotificationCenter

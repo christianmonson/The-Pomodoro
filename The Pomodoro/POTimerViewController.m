@@ -64,6 +64,8 @@ static NSString * const workColorNotification = @"work";
 - (void)newRound {
     [self updateLabel];
     self.timerButton.enabled = YES;
+    self.pauseButton.hidden = TRUE;
+    self.timerButton.hidden = FALSE;
 }
 
 - (void)relax {
