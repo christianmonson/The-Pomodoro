@@ -97,6 +97,7 @@ static NSString * const workColorNotification = @"work";
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [self rounds][indexPath.row]];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.font = [UIFont fontWithName:@"Courier" size:28.4];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Courier" size:12];
     
     if (indexPath.row % 2) {
         cell.textLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
