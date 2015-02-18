@@ -13,6 +13,7 @@
 
 @property (nonatomic, assign) NSInteger currentRound;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableViewCell *cell;
 
 @end
 
@@ -57,10 +58,15 @@ static NSString * const workColorNotification = @"work";
     }
 }
 
+- (void)cellSubtitle {
+    self.cell.detailTextLabel.text = [NSString stringWithFormat:@"%li:%02li", (long)[POTimer sharedInstance].minutes, (long)[POTimer sharedInstance].seconds];
+}
+
 #pragma NSNotificationCenter
 
 - (void)registerForNotification {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(roundComplete) name:roundCompleteNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(roundComplete) name:roundCompleteNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cellSubtitle) name:secondTickNotification object:nil];
 }
 
 - (instancetype)init {
@@ -73,7 +79,7 @@ static NSString * const workColorNotification = @"work";
 }
 
 - (void)deRegisterForNotification {
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)dealloc {
@@ -87,17 +93,19 @@ static NSString * const workColorNotification = @"work";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [self rounds][indexPath.row]];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.font = [UIFont fontWithName:@"Courier" size:28.4];
     
     if (indexPath.row % 2) {
         cell.textLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
         cell.imageView.image = [UIImage imageNamed:@"Joystick"];
     }
     else {
         cell.textLabel.textColor = [UIColor redColor];
+        cell.detailTextLabel.textColor = [UIColor redColor];
         cell.imageView.image = [UIImage imageNamed:@"Worker"];
     }
     
@@ -120,16 +128,25 @@ static NSString * const workColorNotification = @"work";
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:workColorNotification object:nil];
     }
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%li:%02li", (long)[POTimer sharedInstance].minutes, (long)[POTimer sharedInstance].seconds];
+    self.cell = cell;
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.detailTextLabel.text = @"";
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
