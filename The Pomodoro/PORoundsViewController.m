@@ -97,7 +97,7 @@ static NSString * const workColorNotification = @"work";
 #pragma UITableViewDataSource
 
 - (NSArray *)rounds {
-    return @[@25, @5, @25, @5, @25, @5, @25, @15];
+    return @[@25, @1, @25, @5, @25, @5, @25, @15];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

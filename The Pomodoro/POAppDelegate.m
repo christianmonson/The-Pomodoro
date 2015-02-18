@@ -70,4 +70,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Time's Up" message:@"Round's Over" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil]];
+    
+    [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
+}
+
 @end
