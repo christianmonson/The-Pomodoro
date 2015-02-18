@@ -75,6 +75,7 @@ static NSString * const workColorNotification = @"work";
     self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
     self.roundImage.image = [UIImage imageNamed:@"Joystick-white"];
     self.roundImage.contentMode = UIViewContentModeScaleAspectFit;
+//    self.navigationController.title
 }
 
 - (void)work {
@@ -84,6 +85,7 @@ static NSString * const workColorNotification = @"work";
     self.tabBarController.tabBar.tintColor = [UIColor redColor];
     self.roundImage.image = [UIImage imageNamed:@"Worker-white"];
     self.roundImage.contentMode = UIViewContentModeScaleAspectFit;
+
 }
 
 #pragma NSNotificationCenter

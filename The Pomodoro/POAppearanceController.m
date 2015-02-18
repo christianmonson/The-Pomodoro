@@ -13,9 +13,9 @@
 
 + (void)initilizeAppearanceDefaults {
     
-    [[UINavigationBar appearance] setBarTintColor:[UIColor redColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Courier" size:30], NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Courier" size:30], NSForegroundColorAttributeName: [UIColor redColor]}];
+//    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
     
     [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor redColor]];

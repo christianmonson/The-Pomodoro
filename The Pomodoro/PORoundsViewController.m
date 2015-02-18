@@ -30,14 +30,21 @@ static NSString * const workColorNotification = @"work";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"Rounds";
-    
+    UILabel *titleView = [[UILabel alloc]initWithFrame:CGRectZero];
+    titleView.backgroundColor = [UIColor clearColor];
+    titleView.font = [UIFont fontWithName:@"Courier" size:40];
+    titleView.textColor = [UIColor redColor];
+    titleView.text = @"Rounds";
+    self.navigationItem.titleView = titleView;
+    [titleView sizeToFit];
+
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     [self.view addSubview:self.tableView];
     self.tableView.rowHeight = 57;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 - (void)roundSelected:(NSInteger)round {
@@ -101,14 +108,16 @@ static NSString * const workColorNotification = @"work";
     cell.detailTextLabel.font = [UIFont fontWithName:@"Courier" size:12];
     
     if (indexPath.row % 2) {
-        cell.textLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
-        cell.imageView.image = [UIImage imageNamed:@"Joystick"];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.detailTextLabel.textColor = [UIColor whiteColor];
+        cell.imageView.image = [UIImage imageNamed:@"Joystick-white"];
+        cell.backgroundColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
     }
     else {
-        cell.textLabel.textColor = [UIColor redColor];
-        cell.detailTextLabel.textColor = [UIColor redColor];
-        cell.imageView.image = [UIImage imageNamed:@"Worker"];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.detailTextLabel.textColor = [UIColor whiteColor];
+        cell.imageView.image = [UIImage imageNamed:@"Worker-white"];
+        cell.backgroundColor = [UIColor redColor];
     }
     
     return cell;
@@ -125,13 +134,40 @@ static NSString * const workColorNotification = @"work";
     [self roundSelected:self.currentRound];
     [[POTimer sharedInstance] cancelTimer];
     
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
     if (indexPath.row % 2) {
+        cell.textLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.imageView.image = [UIImage imageNamed:@"Joystick"];
         [[NSNotificationCenter defaultCenter] postNotificationName:relaxColorNotification object:nil];
+        
+        UILabel *titleView = [[UILabel alloc]initWithFrame:CGRectZero];
+        titleView.backgroundColor = [UIColor clearColor];
+        titleView.font = [UIFont fontWithName:@"Courier" size:40];
+        titleView.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
+        titleView.text = @"Rounds";
+        self.navigationItem.titleView = titleView;
+        [titleView sizeToFit];
     } else {
+        cell.textLabel.textColor = [UIColor redColor];
+        cell.detailTextLabel.textColor = [UIColor redColor];
+        cell.imageView.image = [UIImage imageNamed:@"Worker"];
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [[NSNotificationCenter defaultCenter] postNotificationName:workColorNotification object:nil];
+        
+        UILabel *titleView = [[UILabel alloc]initWithFrame:CGRectZero];
+        titleView.backgroundColor = [UIColor clearColor];
+        titleView.font = [UIFont fontWithName:@"Courier" size:40];
+        titleView.textColor = [UIColor redColor];
+        titleView.text = @"Rounds";
+        self.navigationItem.titleView = titleView;
+        [titleView sizeToFit];
     }
     
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%li:%02li", (long)[POTimer sharedInstance].minutes, (long)[POTimer sharedInstance].seconds];
     self.cell = cell;
 }
@@ -139,6 +175,15 @@ static NSString * const workColorNotification = @"work";
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     cell.detailTextLabel.text = @"";
+    if (indexPath.row %2) {
+        cell.backgroundColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.imageView.image = [UIImage imageNamed:@"Joystick-white"];
+    } else {
+        cell.backgroundColor = [UIColor redColor];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.imageView.image = [UIImage imageNamed:@"Worker-white"];
+    }
 }
 
 /*
