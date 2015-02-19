@@ -32,7 +32,7 @@ static NSString * const workColorNotification = @"work";
     
     UILabel *titleView = [[UILabel alloc]initWithFrame:CGRectZero];
     titleView.backgroundColor = [UIColor clearColor];
-    titleView.font = [UIFont fontWithName:@"Courier" size:40];
+    titleView.font = [UIFont fontWithName:@"Courier" size:50];
     titleView.textColor = [UIColor redColor];
     titleView.text = @"Rounds";
     self.navigationItem.titleView = titleView;
@@ -45,6 +45,10 @@ static NSString * const workColorNotification = @"work";
     [self.view addSubview:self.tableView];
     self.tableView.rowHeight = 57;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)roundSelected:(NSInteger)round {
