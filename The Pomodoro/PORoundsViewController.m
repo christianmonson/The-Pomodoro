@@ -77,10 +77,10 @@ static NSString * const workColorNotification = @"work";
         [self roundSelected:self.currentRound];
     }
     
-    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.currentRound++ inSection:0];
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.currentRound inSection:0];
     UITableViewCell *nextCell = [self.tableView cellForRowAtIndexPath:newIndexPath];
     [self tableView:self.tableView didSelectRowAtIndexPath:newIndexPath];
-    if (self.currentRound++ % 2) {
+    if (self.currentRound % 2) {
         nextCell.textLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
         nextCell.detailTextLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
         nextCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -128,7 +128,7 @@ static NSString * const workColorNotification = @"work";
 #pragma UITableViewDataSource
 
 - (NSArray *)rounds {
-    return @[@25, @1, @1, @5, @25, @5, @25, @15];
+    return @[@25, @5, @25, @5, @25, @5, @25, @15];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
