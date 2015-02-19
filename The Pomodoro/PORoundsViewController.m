@@ -12,6 +12,7 @@
 @interface PORoundsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, assign) NSInteger currentRound;
+@property (nonatomic, strong) NSIndexPath *currentIndexPath;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UITableViewCell *cell;
 
@@ -54,7 +55,23 @@ static NSString * const workColorNotification = @"work";
 }
 
 - (void)roundComplete {
+//    self.currentIndexPath = [NSIndexPath indexPathForRow:self.currentRound inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentRound inSection:0];
+    [self tableView:self.tableView didDeselectRowAtIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    if (self.currentRound % 2) {
+        cell.backgroundColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.imageView.image = [UIImage imageNamed:@"Joystick-white"];
+    } else {
+        cell.backgroundColor = [UIColor redColor];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.imageView.image = [UIImage imageNamed:@"Worker-white"];
+    }
+    
     if (self.currentRound != [[self rounds] indexOfObject:[[self rounds] lastObject]]){
+        
         self.currentRound++;
         [self roundSelected:self.currentRound];
     }
@@ -64,6 +81,28 @@ static NSString * const workColorNotification = @"work";
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:workColorNotification object:nil];
     }
+    
+    
+    
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.currentRound inSection:0];
+    UITableViewCell *nextCell = [self.tableView cellForRowAtIndexPath:newIndexPath];
+//    nextCell.selected = YES;
+    [self.tableView selectRowAtIndexPath:newIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    if (self.currentRound++ % 2) {
+        nextCell.textLabel.textColor = [UIColor redColor];
+        nextCell.detailTextLabel.textColor = [UIColor redColor];
+        nextCell.imageView.image = [UIImage imageNamed:@"Worker"];
+        nextCell.backgroundColor = [UIColor whiteColor];
+        nextCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    } else {
+        nextCell.textLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
+        nextCell.detailTextLabel.textColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
+        nextCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        nextCell.backgroundColor = [UIColor whiteColor];
+        nextCell.imageView.image = [UIImage imageNamed:@"Joystick"];
+    }
+    self.cell = nextCell;
+    [self cellSubtitle];
 }
 
 - (void)cellSubtitle {
@@ -97,7 +136,7 @@ static NSString * const workColorNotification = @"work";
 #pragma UITableViewDataSource
 
 - (NSArray *)rounds {
-    return @[@25, @1, @25, @5, @25, @5, @25, @15];
+    return @[@25, @1, @1, @5, @25, @5, @25, @15];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -173,9 +212,11 @@ static NSString * const workColorNotification = @"work";
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     cell.detailTextLabel.text = @"";
-    if (indexPath.row %2) {
+    
+    if (indexPath.row % 2) {
         cell.backgroundColor = [UIColor colorWithRed:0.2039 green:0.5961 blue:0.8588 alpha:1.0];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.imageView.image = [UIImage imageNamed:@"Joystick-white"];

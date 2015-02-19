@@ -8,15 +8,17 @@
 
 #import "POTimer.h"
 
+static NSString * const secondTickNotification = @"secondTick";
+static NSString * const currentRoundNotification = @"currentRound";
+static NSString * const roundCompleteNotification = @"roundComplete";
+
 @interface POTimer ()
 
 @property (nonatomic,assign) BOOL isOn;
 
 @end
 
-static NSString * const secondTickNotification = @"secondTick";
-static NSString * const currentRoundNotification = @"currentRound";
-static NSString * const roundCompleteNotification = @"roundComplete";
+
 
 @implementation POTimer
 

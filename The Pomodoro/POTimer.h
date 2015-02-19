@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString * const secondTickNotification;
+static NSString * const currentRoundNotification;
+static NSString * const roundCompleteNotification;
+
+
 @interface POTimer : NSObject
 
 @property (nonatomic,assign) NSInteger minutes;
