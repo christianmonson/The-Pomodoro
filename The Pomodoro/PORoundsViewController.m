@@ -43,7 +43,7 @@ static NSString * const workColorNotification = @"work";
     self.tableView.delegate = self;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     [self.view addSubview:self.tableView];
-    self.tableView.rowHeight = 57;
+    self.tableView.rowHeight = 60;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
